@@ -4,6 +4,8 @@ import 'package:flutterUi/components/searchInput.dart';
 import 'package:flutterUi/constants.dart';
 import 'package:flutterUi/models/product.dart';
 
+import 'singleItemView.dart';
+
 class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,14 @@ class ProductList extends StatelessWidget {
                   itemBuilder: (context, index) => ProductCard(
                     itemIndex: index,
                     product: products[index],
-                    press: () {},
+                    press: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingleItemView(),
+                        ),
+                      );
+                    },
                   ),
                 )
               ],

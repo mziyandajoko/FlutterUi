@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterUi/constants.dart';
+import 'package:flutterUi/screens/landingPage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home.dart';
 
 void main() {
   runApp(ShoeStore());
@@ -16,7 +16,7 @@ class ShoeStore extends StatelessWidget {
           primaryColor: kPrimaryColor,
           accentColor: kSecondaryColor,
           textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)),
-      home: FlutterUi(),
+      home: LandingPage(),
     );
   }
 }
