@@ -1,5 +1,6 @@
 # flutterUi
 
+<img src='screenshot.png' width='200px'>
 A new Flutter project.
 
 ## Getting Started
