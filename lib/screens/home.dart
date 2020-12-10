@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'productsList.dart';
 
-class FlutterUi extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

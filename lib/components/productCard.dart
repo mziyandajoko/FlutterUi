@@ -68,7 +68,16 @@ class ProductCard extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: kDefaultPadding),
                       child: Text(
-                        product.title,
+                        product.name,
+                        style: Theme.of(context).textTheme.button,
+                      ),
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      child: Text(
+                        "\$${product.price}",
                         style: Theme.of(context).textTheme.button,
                       ),
                     ),
