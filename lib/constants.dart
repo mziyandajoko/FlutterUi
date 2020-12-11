@@ -18,3 +18,8 @@ const kDefaultShadow = BoxShadow(
   blurRadius: 27,
   color: Colors.black12,
 );
+
+// Text Headers
+
+const kheaderBold =
+    TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black);

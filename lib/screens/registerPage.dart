@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutterUi/components/CustomInput.dart';
 import 'package:flutterUi/components/customButton.dart';
-import 'package:flutterUi/constants.dart';
 
-import 'registerPage.dart';
+import '../constants.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
                   top: 20,
                 ),
                 child: Text(
-                  'Enter your Details to logIn',
+                  'Create A New Account',
                   textAlign: TextAlign.center,
                   style: kheaderBold,
                 ),
@@ -39,18 +33,15 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Password',
                   ),
                   CustomButton(
-                    text: 'Login',
+                    text: 'Register',
                     onPressed: () {},
                   ),
                 ],
               ),
               CustomButton(
-                  text: 'Create Your Account',
+                  text: 'Already have an accout Login',
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
+                    Navigator.pop(context);
                   },
                   btnOutline: false),
             ],
