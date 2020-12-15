@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterUi/components/CustomInput.dart';
 import 'package:flutterUi/components/customButton.dart';
@@ -10,7 +11,45 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  Future<void> _alertDialogBuilder() async {
+  // create new user account
+  Future<String> _createAccount() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _registerEmail,
+        password: _registerPassword,
+      );
+      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email.';
+      }
+      return e.message;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  void _submitForm() async {
+    //adds loading indicator
+    setState(() {
+      _registerUser = true;
+    });
+    // runs create account method
+    String _createAccountFeedback = await _createAccount();
+    if (_createAccountFeedback != null) {
+      _alertDialogBuilder(_createAccountFeedback);
+      //removes loading indicator
+      setState(() {
+        _registerUser = false;
+      });
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
+  Future<void> _alertDialogBuilder(String error) async {
     return showDialog(
         context: context,
         barrierDismissible: false,
@@ -33,7 +72,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   bool _registerUser = false;
-
   String _registerEmail;
   String _registerPassword;
 
@@ -90,13 +128,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                     focusNode: _passwordFocusNode,
                     isPasswordField: true,
+                    onSubmitted: (value) {
+                      _submitForm();
+                    },
                   ),
                   CustomButton(
                     text: 'Register',
                     onPressed: () {
-                      setState(() {
-                        _registerUser = true;
-                      });
+                      _submitForm();
                     },
                     isLoading: _registerUser,
                   ),
